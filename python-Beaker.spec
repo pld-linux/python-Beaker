@@ -12,6 +12,7 @@ Source0:    http://cheeseshop.python.org/packages/source/B/%{fname}/%{fname}-%{v
 URL:		http://beaker.groovie.org/
 BuildRequires:  python-setuptools
 Requires:	python >= %{python_version}
+Requires:   python-setuptools
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
