@@ -1,6 +1,6 @@
 %define 	module	        beaker
 %define     fname           Beaker
-%define     python_version  2.4
+%define     python_version  2.5
 Summary:	Session (and caching soon) WSGI Middleware
 Name:		python-%{fname}
 Version:	0.6.1
