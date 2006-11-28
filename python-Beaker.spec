@@ -7,7 +7,7 @@ Release:	0.1
 License:	MIT
 Group:		Libraries/Python
 Source0:	http://cheeseshop.python.org/packages/source/B/Beaker/%{fname}-%{version}.tar.gz
-# Source0-md5:   58683737c7ebf54d9903ff849247cc3b
+# Source0-md5:	58683737c7ebf54d9903ff849247cc3b
 URL:		http://beaker.groovie.org/
 BuildRequires:	python-setuptools
 BuildRequires:	python >= 1:2.5
