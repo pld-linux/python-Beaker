@@ -1,6 +1,6 @@
 %define		fname	Beaker
 Summary:	Session (and caching soon) WSGI Middleware
-Summary(pl):	Middleware WSGI do obs硊gi sesji (i wkr髏ce pami阠i podr阠znej)
+Summary(pl.UTF-8):   Middleware WSGI do obs艂ugi sesji (i wkr贸tce pami臋ci podr臋cznej)
 Name:		python-%{fname}
 Version:	0.6.1
 Release:	0.1
@@ -25,14 +25,14 @@ application wrappers, like sessions and caching, in WSGI middleware.
 Currently the only middleware implemented is that for sessions but
 more is coming soon.
 
-%description -l pl
-Beaker to proste middleware WSGI do u縴wania API Myghty Container.
+%description -l pl.UTF-8
+Beaker to proste middleware WSGI do u偶ywania API Myghty Container.
 
 MythtyUtils zawiera bardzo mocne API Container do przechowywania
-danych przy u縴ciu r罂nych backend體. Beaker u縴wa tych API do
-implementacji og髄nych wrapper體 aplikacji WWW, takich jak sesje czy
-pami赕 podr阠zna wewn眛rz middleware WSGI. Aktualnie zaimplementowane
-jest jedynie middleware dla sesji, ale wkr髏ce b阣zie wi阠ej.
+danych przy u偶yciu r贸偶nych backend贸w. Beaker u偶ywa tych API do
+implementacji og贸lnych wrapper贸w aplikacji WWW, takich jak sesje czy
+pami臋膰 podr臋czna wewn膮trz middleware WSGI. Aktualnie zaimplementowane
+jest jedynie middleware dla sesji, ale wkr贸tce b臋dzie wi臋cej.
 
 %prep
 %setup -qn %{fname}-%{version}
