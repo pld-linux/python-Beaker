@@ -1,6 +1,6 @@
 %define		fname	Beaker
 Summary:	Session (and caching soon) WSGI Middleware
-Summary(pl.UTF-8):   Middleware WSGI do obsługi sesji (i wkrótce pamięci podręcznej)
+Summary(pl.UTF-8):	Middleware WSGI do obsługi sesji (i wkrótce pamięci podręcznej)
 Name:		python-%{fname}
 Version:	0.6.1
 Release:	0.1
