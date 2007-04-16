@@ -2,12 +2,12 @@
 Summary:	Session (and caching soon) WSGI Middleware
 Summary(pl.UTF-8):	Middleware WSGI obsługi sesji (i wkrótce pamięci podręcznej)
 Name:		python-%{fname}
-Version:	0.6.1
+Version:	0.6.3
 Release:	0.1
 License:	MIT
 Group:		Libraries/Python
 Source0:	http://cheeseshop.python.org/packages/source/B/Beaker/%{fname}-%{version}.tar.gz
-# Source0-md5:	58683737c7ebf54d9903ff849247cc3b
+# Source0-md5:	4f4ae4bfd4e3e237dbdfc55446de7a03
 URL:		http://beaker.groovie.org/
 BuildRequires:	python-setuptools
 BuildRequires:	python >= 1:2.5
@@ -43,17 +43,21 @@ python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 python setup.py install \
 	--root=$RPM_BUILD_ROOT \
 	--optimize=2
 
 %py_postclean
+install tests/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc CHANGELOG
 %{py_sitescriptdir}/beaker
 %{py_sitescriptdir}/%{fname}-%{version}-py*.egg-info
+%{_examplesdir}/%{name}-%{version}
