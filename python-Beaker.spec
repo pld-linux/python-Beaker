@@ -1,6 +1,6 @@
 %define		fname	Beaker
 Summary:	Session (and caching soon) WSGI Middleware
-Summary(pl.UTF-8):	Middleware WSGI do obsługi sesji (i wkrótce pamięci podręcznej)
+Summary(pl.UTF-8):	Middleware WSGI obsługi sesji (i wkrótce pamięci podręcznej)
 Name:		python-%{fname}
 Version:	0.6.1
 Release:	0.1
@@ -12,6 +12,7 @@ URL:		http://beaker.groovie.org/
 BuildRequires:	python-setuptools
 BuildRequires:	python >= 1:2.5
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -26,7 +27,7 @@ Currently the only middleware implemented is that for sessions but
 more is coming soon.
 
 %description -l pl.UTF-8
-Beaker to proste middleware WSGI do używania API Myghty Container.
+Beaker jest prostym middleware WSGI do użytku API Myghty Container.
 
 MythtyUtils zawiera bardzo mocne API Container do przechowywania
 danych przy użyciu różnych backendów. Beaker używa tych API do
@@ -47,7 +48,7 @@ python setup.py install \
 	--root=$RPM_BUILD_ROOT \
 	--optimize=2
 
-find $RPM_BUILD_ROOT%{py_sitescriptdir} -name \*.py -exec rm {} \;
+%py_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
