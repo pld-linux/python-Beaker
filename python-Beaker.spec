@@ -2,12 +2,12 @@
 Summary:	Session (and caching soon) WSGI Middleware
 Summary(pl.UTF-8):	Middleware WSGI obsługi sesji (i wkrótce pamięci podręcznej)
 Name:		python-%{fname}
-Version:	0.6.3
+Version:	0.7.5
 Release:	0.1
 License:	MIT
 Group:		Libraries/Python
 Source0:	http://cheeseshop.python.org/packages/source/B/Beaker/%{fname}-%{version}.tar.gz
-# Source0-md5:	4f4ae4bfd4e3e237dbdfc55446de7a03
+# Source0-md5:	078822afaf2f2cc52024df24bca7234d
 URL:		http://beaker.groovie.org/
 BuildRequires:	python-setuptools
 BuildRequires:	python >= 1:2.4
