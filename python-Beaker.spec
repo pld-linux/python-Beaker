@@ -10,7 +10,7 @@ Source0:	http://cheeseshop.python.org/packages/source/B/Beaker/%{fname}-%{versio
 # Source0-md5:	4f4ae4bfd4e3e237dbdfc55446de7a03
 URL:		http://beaker.groovie.org/
 BuildRequires:	python-setuptools
-BuildRequires:	python >= 1:2.5
+BuildRequires:	python >= 1:2.4
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-modules
