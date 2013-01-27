@@ -1,19 +1,21 @@
-%define		fname	Beaker
+# TODO
+# - rename to python-beaker to conform to pld python package naming
+%define		module	Beaker
 Summary:	Session (and caching soon) WSGI Middleware
 Summary(pl.UTF-8):	Middleware WSGI obsługi sesji (i wkrótce pamięci podręcznej)
-Name:		python-%{fname}
-Version:	1.5.4
+Name:		python-%{module}
+Version:	1.6.4
 Release:	1
 License:	MIT
 Group:		Libraries/Python
-Source0:	http://cheeseshop.python.org/packages/source/B/Beaker/%{fname}-%{version}.tar.gz
-# Source0-md5:	de84e7511119dc0b8eb4ac177d3e2512
-URL:		http://beaker.groovie.org/
-BuildRequires:	python-setuptools
+Source0:	http://cheeseshop.python.org/packages/source/B/Beaker/%{module}-%{version}.tar.gz
+# Source0-md5:	c2e102870ed4c53104dec48ceadf8e9d
+URL:		http://beaker.rtfd.org/
 BuildRequires:	python >= 1:2.4
+BuildRequires:	python-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
-%pyrequires_eq	python-modules
+Requires:	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -36,21 +38,22 @@ pamięć podręczna wewnątrz middleware WSGI. Aktualnie zaimplementowane
 jest jedynie middleware dla sesji, ale wkrótce będzie więcej.
 
 %prep
-%setup -qn %{fname}-%{version}
+%setup -qn %{module}-%{version}
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+%{__python} setup.py install \
+	--skip-build \
+	--optimize=2 \
+	--root=$RPM_BUILD_ROOT
 
-python setup.py install \
-	--root=$RPM_BUILD_ROOT \
-	--optimize=2
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -a tests/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %py_postclean
-install tests/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -58,6 +61,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGELOG
-%{py_sitescriptdir}/beaker
-%{py_sitescriptdir}/%{fname}-%{version}-py*.egg-info
+%dir %{py_sitescriptdir}/beaker
+%{py_sitescriptdir}/beaker/*.py[co]
+%{py_sitescriptdir}/beaker/crypto
+%{py_sitescriptdir}/beaker/ext
+%{py_sitescriptdir}/Beaker-%{version}-py*.egg-info
 %{_examplesdir}/%{name}-%{version}
