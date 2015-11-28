@@ -41,14 +41,11 @@ jest jedynie middleware dla sesji, ale wkrótce będzie więcej.
 %setup -qn %{module}-%{version}
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__python} setup.py install \
-	--skip-build \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+%py_install
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a tests/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
