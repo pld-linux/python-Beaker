@@ -5,7 +5,7 @@ Summary:	Session (and caching soon) WSGI Middleware
 Summary(pl.UTF-8):	Middleware WSGI obsługi sesji (i wkrótce pamięci podręcznej)
 Name:		python-%{module}
 Version:	1.6.4
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries/Python
 Source0:	http://cheeseshop.python.org/packages/source/B/Beaker/%{module}-%{version}.tar.gz
