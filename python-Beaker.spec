@@ -1,21 +1,42 @@
 # TODO
-# - rename to python-beaker to conform to pld python package naming
+# - rename to python-beaker?
+#
+# Conditional build:
+%bcond_with	tests	# unit tests (not included in sdist)
+
 %define		module	Beaker
 Summary:	Session (and caching soon) WSGI Middleware
 Summary(pl.UTF-8):	Middleware WSGI obsługi sesji (i wkrótce pamięci podręcznej)
 Name:		python-%{module}
-Version:	1.6.4
-Release:	2
+# keep 1.11.x here for python2 support
+Version:	1.11.0
+Release:	1
 License:	MIT
 Group:		Libraries/Python
-Source0:	http://cheeseshop.python.org/packages/source/B/Beaker/%{module}-%{version}.tar.gz
-# Source0-md5:	c2e102870ed4c53104dec48ceadf8e9d
-URL:		http://beaker.rtfd.org/
-BuildRequires:	python >= 1:2.4
+#Source0Download: https://pypi.org/simple/beaker/
+Source0:	https://files.pythonhosted.org/packages/source/B/Beaker/%{module}-%{version}.tar.gz
+# Source0-md5:	21e1464acaf5358d90133d1e0cc189b6
+URL:		https://beaker.readthedocs.io/
+BuildRequires:	python >= 1:2.6
 BuildRequires:	python-setuptools
+%if %{with tests}
+BuildRequires:	python-cryptography
+BuildRequires:	python-funcsigs
+BuildRequires:	python-memcached
+BuildRequires:	python-mock
+BuildRequires:	python-modules-sqlite
+BuildRequires:	python-nose
+BuildRequires:	python-pycparser = 2.18
+BuildRequires:	python-pycryptodome
+BuildRequires:	python-pylibmc
+BuildRequires:	python-pymongo
+BuildRequires:	python-redis
+BuildRequires:	python-sqlalchemy
+BuildRequires:	python-webtest < 2.0.24
+%endif
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
-Requires:	python-modules
+BuildRequires:	rpmbuild(macros) >= 1.714
+Requires:	python-modules >= 1:2.6
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,14 +62,12 @@ jest jedynie middleware dla sesji, ale wkrótce będzie więcej.
 %setup -qn %{module}-%{version}
 
 %build
-%py_build
+%py_build %{?with_tests:test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%py_install
 
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-cp -a tests/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+%py_install
 
 %py_postclean
 
@@ -57,10 +76,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG
-%dir %{py_sitescriptdir}/beaker
-%{py_sitescriptdir}/beaker/*.py[co]
-%{py_sitescriptdir}/beaker/crypto
-%{py_sitescriptdir}/beaker/ext
+%doc README.rst
+%{py_sitescriptdir}/beaker
 %{py_sitescriptdir}/Beaker-%{version}-py*.egg-info
-%{_examplesdir}/%{name}-%{version}
